@@ -1,19 +1,8 @@
 var express = require('express');
 const db = require("../database_init.js")
 const Db_ = require("../controllers/database_controller.js")
-const session = require('express-session');
 var router = express.Router();
 const dbase = new Db_();
-
-
-app.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
-}));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
 
 /* GET home page. */
 router.get('/', async (req, res, next) => {
@@ -22,13 +11,18 @@ router.get('/', async (req, res, next) => {
   res.status(200).json(messages)
 });
 
-router.get('/login', async (req, res, next) => {
+router.post('/login', async (req, res, next) => {
 
   var data = req.body;
   await dbase.read_user_table(data)
-  .then((user) => {
+  .then(async(user) => {
+    // console.log(user,"=========================>>>>")
+    if(user){
+      message = await dbase.read_all_message_table(user[0].id)
+
+    }
     // console.log(user,"==========>>");
-    res.status(200).json(user)
+    res.status(200).json(message)
   })
   .catch(err => console.log("I CATCH IT!", err))
   

@@ -76,10 +76,10 @@ class DB_{
     
     
     
-    read_all_message_table(){ 
+    read_all_message_table(user){ 
         return new Promise( (resolve, reject) => {
-
-            var sql = `select * from messages`
+            console.log(user,"==========>>>>")
+            var sql = `select * from messages WHERE receiverid='${user}'`
             var params = []
             return db.all(sql, params, (err, rows) => {
                 if (err) {
@@ -106,7 +106,7 @@ class DB_{
     read_user_table(data){ 
         return new Promise( (resolve, reject) => {
 
-        var sql = `SELECT * FROM users WHERE name="${data.name}";`
+        var sql = `SELECT * FROM users WHERE email="${data.email}";`
         var params = []
         db.all(sql, params, (err, rows) => {
             if (err) {
@@ -115,8 +115,9 @@ class DB_{
             //   res.status(400).json({"error":err.message});
               return;
             }
+            
             resolve(rows)
-            return rows
+            
             // res.json({
             //     "message":"success",
             //     "data":rows
