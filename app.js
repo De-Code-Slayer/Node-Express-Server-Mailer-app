@@ -1,15 +1,20 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+const cors = require("cors")
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+const corsOptions = {
+  origin:"*",
+  optionSuccessStatus:200
+}
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 const db = require("./database_init.js")
 
 var app = express();
+app.use(cors(corsOptions))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

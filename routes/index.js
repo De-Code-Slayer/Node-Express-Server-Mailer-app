@@ -4,6 +4,8 @@ const Db_ = require("../controllers/database_controller.js")
 var router = express.Router();
 const dbase = new Db_();
 
+
+
 /* GET home page. */
 router.get('/', async (req, res, next) => {
   var messages = await dbase.read_all_message_table();
@@ -11,7 +13,7 @@ router.get('/', async (req, res, next) => {
   res.status(200).json(messages)
 });
 
-// route for login
+
 router.post('/login', async (req, res, next) => {
 
   var data = req.body;
@@ -30,7 +32,7 @@ router.post('/login', async (req, res, next) => {
 });
 
 
-// route to add message
+
 router.post('/add/message', function(req, res, next) {
 
 
@@ -45,7 +47,7 @@ router.post('/add/message', function(req, res, next) {
   res.render('index', { title: message });
 });
 
-// route to add user
+
 router.post('/add/user', function(req, res, next) {
     const name = req.body.name.split(" ").join("").toLowerCase();
     const email = `${name}@mailerapp.com`
@@ -60,7 +62,6 @@ router.post('/add/user', function(req, res, next) {
 
 
 
-// Route to create the database
 router.get('/createall', function(req, res, next) {
 
   var messages = dbase.create_message_table();
@@ -71,7 +72,7 @@ router.get('/createall', function(req, res, next) {
 });
 
 
-// route to update messages
+
 router.post('/update/message', function(req, res, next) {
   var update = req.body
   dbase.update_message_table(update);
