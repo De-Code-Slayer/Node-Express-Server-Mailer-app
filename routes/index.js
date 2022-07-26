@@ -22,7 +22,7 @@ router.post('/login', async (req, res, next) => {
 
     }
     // console.log(user,"==========>>");
-    res.status(200).json(message)
+    res.status(200).json({"message":message,"user":user})
   })
   .catch(err => console.log("I CATCH IT!", err))
   
