@@ -37,6 +37,8 @@ router.post('/add/message', function(req, res, next) {
     senderid: req.body.senderid,
     receiverid: req.body.receiverid,
     subject: req.body.subject,
+    name: req.body.name,
+    avatar: req.body.avatar,
     content: req.body.content,
   });
   res.render('index', { title: message });

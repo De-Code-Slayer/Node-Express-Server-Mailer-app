@@ -12,6 +12,8 @@ class DB_{
         db.run(`CREATE TABLE messages (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             subject text, 
+            name text, 
+            avatar text, 
             content text,
             senderid INTEGER,
             receiverid Integer, 
@@ -60,8 +62,8 @@ class DB_{
     
     insert_message_table(value){ 
     
-        var insert = `INSERT INTO messages (subject, content, isread, senderid, receiverid) VALUES (?,?,?,?,?)`
-        db.run(insert, [value.subject,value.content,0,value.senderid,value.receiverid])
+        var insert = `INSERT INTO messages (subject,name,avatar, content, isread, senderid, receiverid) VALUES (?,?,?,?,?,?,?)`
+        db.run(insert, [value.subject,value.name,value.avatar,value.content,0,value.senderid,value.receiverid])
     
        return 201
       }
