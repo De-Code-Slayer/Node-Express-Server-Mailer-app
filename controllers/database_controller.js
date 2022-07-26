@@ -1,12 +1,13 @@
 const db = require("../database_init.js")
 
 
-
+// A constructor class for all the functions, I can export the Class and access all functions as methods from there
 class DB_{
     constructor(){
         
     }
 
+// this method creates a table for messages only
     create_message_table(){ 
 
         db.run(`CREATE TABLE messages (
@@ -34,8 +35,7 @@ class DB_{
        }
 
 
-
-
+// this method creates a table for users only
     create_user_table(){ 
 
         db.run(`CREATE TABLE users (
@@ -59,7 +59,7 @@ class DB_{
         return `user TABLE CREATED`
        }
     
-    
+// this method inserts values for messages table only
     insert_message_table(value){ 
     
         var insert = `INSERT INTO messages (subject,name,avatar, content, isread, senderid, receiverid) VALUES (?,?,?,?,?,?,?)`
@@ -67,7 +67,7 @@ class DB_{
     
        return 201
       }
-
+// this method inserts values for users table only
     insert_user_table(value){ 
     
         var insert = `INSERT INTO users (name, avatar, email) VALUES (?,?,?)`
@@ -76,9 +76,9 @@ class DB_{
        return 201
       }
     
-    
-    
+// this method gets all messages from a sigle user  
     read_all_message_table(user){ 
+        // A promise is used because the function was returning before the results were ready
         return new Promise( (resolve, reject) => {
             console.log(user,"==========>>>>")
             var sql = `select * from messages WHERE receiverid='${user}'`
@@ -103,8 +103,7 @@ class DB_{
     
        
       }
-
-
+// this method gets a single user by email 
     read_user_table(data){ 
         return new Promise( (resolve, reject) => {
 
@@ -130,7 +129,7 @@ class DB_{
        
       }
 
-
+// this method updates the isread column only
     update_message_table(data){ 
 
         let query = `UPDATE messages SET `
@@ -143,15 +142,12 @@ class DB_{
         db.all(sql, params, (err, rows) => {
             if (err) {
                 console.log(err,"There was an error");
-            //   res.status(400).json({"error":err.message});
+           
               return;
             }
             console.log(err,"Updated successfully");
             return "Updated"
-            // res.json({
-            //     "message":"success",
-            //     "data":rows
-            // })
+            
           });
     
     
