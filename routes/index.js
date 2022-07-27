@@ -44,7 +44,7 @@ router.post('/add/message', function(req, res, next) {
     avatar: req.body.avatar,
     content: req.body.content,
   });
-  res.render('index', { title: message });
+  res.status(201).json("message Added");
 });
 
 

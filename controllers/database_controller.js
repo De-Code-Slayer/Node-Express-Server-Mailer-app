@@ -26,7 +26,7 @@ class DB_{
                 console.log(err,"Table already exist");
                 // Table already created
             }}
-            db.close()
+            
         //  db.serialize(() => {
         // //  db.run( `CREATE TABLE ${name}(info TEXT)` )
         //  db.close()  
@@ -51,7 +51,7 @@ class DB_{
                 console.log(err,"Table already exist");
                 // Table already created
             }}
-            db.close()
+            
         //  db.serialize(() => {
         // //  db.run( `CREATE TABLE ${name}(info TEXT)` )
         //  db.close()  

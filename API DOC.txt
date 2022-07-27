@@ -1,0 +1,4 @@
+Link to the documentation of this api 
+with postman 
+
+https://documenter.getpostman.com/view/22370497/UzXNSwSy
